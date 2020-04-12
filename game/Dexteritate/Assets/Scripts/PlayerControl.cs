@@ -14,20 +14,27 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float leftright = Input.GetAxis("Mouse X");
-        float updown = Input.GetAxis("Mouse Y");
+        float cam_hoz = Input.GetAxis("Mouse X");
+        float cam_ver = Input.GetAxis("Mouse Y");
         float forwards = Input.GetAxis("Vertical");
         float sideways = Input.GetAxis("Horizontal");
         
-        transform.Rotate(0, leftright, 0);
-        Camera.main.transform.Rotate(updown, 0, 0);
+        transform.Rotate(0, cam_hoz, 0);
+        Camera.main.transform.Rotate(cam_ver, 0, 0);
 
         vertV += Physics.gravity.y * Time.deltaTime;
+
+        CharacterController charcontroller = GetComponent<CharacterController>();
+
+        if (Input.GetButton("Jump") && charcontroller.isGrounded)
+        {
+            vertV = 5;
+        }
         
-        CharacterController 
+        Vector3 speed = new Vector3(cam_hoz, vertV, forwards);
 
+        speed = transform.rotation * speed;
 
-
-
+        charcontroller.Move(speed * Time.deltaTime);
     }
 }
