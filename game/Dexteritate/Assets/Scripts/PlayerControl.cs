@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     
     // sensitivity of mouse - this should be extradited to editor variable
     private float MOUSE_SENS = 4f;
-    private float MOVEMENT_SPEED = 10f;
+    private int MOVEMENT_SPEED = 10;
 
     private float cam_hoz = 0f, cam_ver = 0f;
     
@@ -31,20 +31,19 @@ public class PlayerControl : MonoBehaviour
             MOUSE_LOCKED = !MOUSE_LOCKED;
         
         lockCamera(MOUSE_LOCKED);
-
-        // by accumulating these numbers, we can prevent having to drag mouse back if over 180deg
-        cam_hoz += (Input.GetAxis("Mouse X") * MOUSE_SENS);
-        cam_ver += (Input.GetAxis("Mouse Y") * MOUSE_SENS) * -1;
+        
+        cam_hoz = (Input.GetAxis("Mouse X") * MOUSE_SENS);
+        cam_ver = (Input.GetAxis("Mouse Y") * MOUSE_SENS) * -1;
         
         float forwards = Input.GetAxis("Vertical");
         float sideways = Input.GetAxis("Horizontal");
 
-        // we don't want to go over 180 deg range - we'll end up spinning around
-        cam_ver = Mathf.Clamp(cam_ver, -90f, 90f);
-        
-        Camera.main.transform.rotation = Quaternion.Euler(cam_ver, 0, 0);
+        // we don't want to go over 180 deg range - we'll end up spinning around -- fix this
+        // cam_ver = Mathf.Clamp(cam_ver, -90f, 90f);
         
         transform.Rotate(0, cam_hoz, 0);
+        Camera.main.transform.Rotate(cam_ver, 0, 0);
+        
 
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
@@ -53,9 +52,11 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton("Jump") && charcontroller.isGrounded)
             verticalVelocity = 5;
         
+        
         Vector3 speed = new Vector3(sideways , verticalVelocity, forwards);
         speed = transform.rotation * speed;
-        speed = speed * MOVEMENT_SPEED;
+        speed = speed * 10;
+        
 
         charcontroller.Move(speed * Time.deltaTime);
     }
@@ -71,6 +72,16 @@ public class PlayerControl : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+    
+    // called when the charcontroller hits something
+    void OnControllerColliderHit(ControllerColliderHit hit){
+        
+        // for now, we only care about the platforms 
+        if (hit.gameObject.CompareTag("platform"))
+        {
+            hit.transform.SendMessage("spam", SendMessageOptions.RequireReceiver);
         }
     }
 }
