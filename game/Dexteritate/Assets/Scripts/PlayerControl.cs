@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // how much we have to fall at this frame
     private float verticalVelocity = 0;
@@ -18,10 +14,20 @@ public class PlayerControl : MonoBehaviour
     private bool  MOUSE_LOCKED = true;
     
     // sensitivity of mouse - this should be extradited to editor variable
-    private float MOUSE_SENS = 4f;
-    private int MOVEMENT_SPEED = 10;
+    public float MouseSensitivity = 4f;
+    public float MovementSpeedMultiplier = 1;
+    public float SprintSpeedMultiplier = 1;
+    public float JumpHeight = 5;
 
     private float cam_hoz = 0f, cam_ver = 0f;
+
+    private float sprMult;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        sprMult = SprintSpeedMultiplier;
+    }
     
     // Update is called once per frame
     void Update()
@@ -32,8 +38,8 @@ public class PlayerControl : MonoBehaviour
         
         lockCamera(MOUSE_LOCKED);
         
-        cam_hoz = (Input.GetAxis("Mouse X") * MOUSE_SENS);
-        cam_ver = (Input.GetAxis("Mouse Y") * MOUSE_SENS) * -1;
+        cam_hoz = (Input.GetAxis("Mouse X") * MouseSensitivity);
+        cam_ver = (Input.GetAxis("Mouse Y") * MouseSensitivity) * -1;
         
         float forwards = Input.GetAxis("Vertical");
         float sideways = Input.GetAxis("Horizontal");
@@ -50,15 +56,13 @@ public class PlayerControl : MonoBehaviour
         CharacterController charcontroller = GetComponent<CharacterController>();
 
         if (Input.GetButton("Jump") && charcontroller.isGrounded)
-            verticalVelocity = 5;
-        
-        
+            verticalVelocity = JumpHeight;
+
         Vector3 speed = new Vector3(sideways , verticalVelocity, forwards);
         speed = transform.rotation * speed;
         speed = speed * 10;
         
-
-        charcontroller.Move(speed * Time.deltaTime);
+        charcontroller.Move(speed  * MovementSpeedMultiplier * Time.deltaTime);
     }
     
     private void lockCamera(bool locked)

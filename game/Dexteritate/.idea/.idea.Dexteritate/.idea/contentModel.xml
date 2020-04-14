@@ -376,10 +376,59 @@
             <e p="Skybox-Procedural.shader" t="Include" />
           </e>
         </e>
+        <e p="Samples" t="Include">
+          <e p="ProBuilder" t="Include">
+            <e p="4.2.3" t="Include">
+              <e p="Editor Examples" t="Include">
+                <e p="ClearUnusedAttributes.cs" t="Include" />
+                <e p="CreateShadowObject.cs" t="Include" />
+                <e p="CustomAction.cs" t="Include" />
+                <e p="EditorCallbackViewer.cs" t="Include" />
+                <e p="RenameNewObjects.cs" t="Include" />
+                <e p="SetCustomUnwrapParams.cs" t="Include" />
+                <e p="Unity.ProBuilder.Examples.Editor.asmdef" t="Include" />
+              </e>
+              <e p="Runtime Examples" t="Include">
+                <e p="Convert Mesh to Editable" t="Include">
+                  <e p="MakePrimitiveEditable.cs" t="Include" />
+                </e>
+                <e p="Icosphere FFT" t="Include">
+                  <e p="README.txt" t="Include" />
+                  <e p="Scripts" t="Include">
+                    <e p="CameraControls.cs" t="Include" />
+                    <e p="IcoBumpin.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Misc" t="Include">
+                  <e p="CreatePolyShape.cs" t="Include" />
+                  <e p="HueCube.cs" t="Include" />
+                </e>
+                <e p="Procedural Mesh" t="Include">
+                  <e p="ExtrudeRandomEdges.cs" t="Include" />
+                </e>
+                <e p="Runtime Editing" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="CameraMotion.cs" t="Include" />
+                    <e p="Handles.cs" t="Include" />
+                    <e p="MeshEditor.cs" t="Include" />
+                    <e p="Selection.cs" t="Include" />
+                    <e p="SimpleGrid.cs" t="Include" />
+                    <e p="Utility.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Unity.ProBuilder.Examples.asmdef" t="Include" />
+                <e p="Vertex Colors" t="Include">
+                  <e p="HighlightNearestFace.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="PlatformMovement.cs" t="Include" />
           <e p="PlatformPlayer.cs" t="Include" />
           <e p="PlayerControl.cs" t="Include" />
+          <e p="PlayerWeaponScript.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
         </e>
         <e p="Standard Assets" t="Include">
@@ -632,6 +681,8 @@
       </e>
       <e p="Dexteritate.sln" t="IncludeFlat" />
       <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="Unity.ProBuilder.Examples.Editor.csproj" t="IncludeRecursive" />
+      <e p="Unity.ProBuilder.Examples.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
     </e>

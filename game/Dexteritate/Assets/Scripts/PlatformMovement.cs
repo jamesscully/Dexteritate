@@ -8,14 +8,12 @@ using UnityEngine.Serialization;
 public class PlatformMovement : MonoBehaviour
 {
     
-    
-
-    private float deltaX = 0f, deltaY = 0f, deltaZ = 0f;
 
     public float speed;
 
-    [FormerlySerializedAs("startPos")] public Vector3 PositionA;
-    [FormerlySerializedAs("endPos")] public Vector3 PositionB;
+    public float range = 0f;
+
+    public bool moveX, moveY, moveZ;
 
     private float startTime;
     
@@ -23,14 +21,21 @@ public class PlatformMovement : MonoBehaviour
     private float travelled = 0f;
 
     private BoxCollider platform = null;
+
+    private Vector3 PositionA, PositionB;
     
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
-        distance = Vector3.Distance(PositionA, PositionB);
 
-        platform = GetComponentInChildren<BoxCollider>();
+        // c# doesn't implicitly cast bool to int
+        int mX = moveX ? 1 : 0; int mY = moveY ? 1 : 0; int mZ = moveZ ? 1 : 0;
+        
+        PositionA = transform.position - new Vector3(range * mX, range * mY, range * mZ);
+        PositionB = transform.position + new Vector3(range * mX, range * mY, range * mZ);
+        
+        distance = Vector3.Distance(PositionA, PositionB);
     }
 
     // Update is called once per frame
@@ -51,11 +56,6 @@ public class PlatformMovement : MonoBehaviour
         {
             reverse();
         }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Collision occured");
     }
 
     void reverse()
