@@ -54,31 +54,40 @@ public class PlayerWeaponScript : MonoBehaviour
         //     StopHoldingObject();
         // }
     }
+
     
     void FireGrabObjectRay()
     {
 
-        RaycastHit hit; 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Transform cam = Camera.main.transform;
         
-        
-        Debug.DrawRay(ray.origin, ray.direction);
-        
-        // if we have hit something
-        if (Physics.Raycast(ray, out hit))
-        {
-            // get information about the hit object
-            Collider hitCollider = hit.collider;
-            GameObject objHit = hitCollider.gameObject;
-            string tag = hitCollider.gameObject.tag;
+        Debug.Log("Player Rot: " + transform.rotation + " Player Forward: " + transform.forward);
+        RaycastHit hit;
+        //Ray ray = new Ray(cam.position, cam.forward);
 
-            if (tag == "grabbable")
-            {
-                print("Grabbable object has been hit");
-                holding = true;
-                heldObject = objHit;
-            }
-        }
+        Vector3 lookAt = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+        print(transform.position);
+
+        Ray ray = new Ray(lookAt, cam.forward);
+        Debug.DrawRay(ray.origin, cam.forward * 10, Color.magenta, 10);
+
+
+        // if we have hit something
+        // if (Physics.Raycast(ray, out hit))
+        // if (Physics.Raycast(cam.position, cam.forward, out hit, 100f))
+        // {
+        //     // get information about the hit object
+        //     Collider hitCollider = hit.collider;
+        //     GameObject objHit = hitCollider.gameObject;
+        //     string tag = hitCollider.gameObject.tag;
+        //
+        //     if (tag == "grabbable")
+        //     {
+        //         print("Grabbable object has been hit");
+        //         holding = true;
+        //         heldObject = objHit;
+        //     }
+        // }
         
         
         // Debug.Log(hit.point);

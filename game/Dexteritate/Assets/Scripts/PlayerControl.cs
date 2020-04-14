@@ -36,28 +36,28 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown("escape"))
             MOUSE_LOCKED = !MOUSE_LOCKED;
         
-        lockCamera(MOUSE_LOCKED);
+        lockCursor(MOUSE_LOCKED);
         
         cam_hoz = (Input.GetAxis("Mouse X") * MouseSensitivity);
         cam_ver = (Input.GetAxis("Mouse Y") * MouseSensitivity) * -1;
         
         float forwards = Input.GetAxis("Vertical");
         float sideways = Input.GetAxis("Horizontal");
-
+        
         // we don't want to go over 180 deg range - we'll end up spinning around -- fix this
         // cam_ver = Mathf.Clamp(cam_ver, -90f, 90f);
         
         transform.Rotate(0, cam_hoz, 0);
         Camera.main.transform.Rotate(cam_ver, 0, 0);
         
-
+        
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
-
+        
         CharacterController charcontroller = GetComponent<CharacterController>();
-
+        
         if (Input.GetButton("Jump") && charcontroller.isGrounded)
             verticalVelocity = JumpHeight;
-
+        
         Vector3 speed = new Vector3(sideways , verticalVelocity, forwards);
         speed = transform.rotation * speed;
         speed = speed * 10;
@@ -65,7 +65,7 @@ public class PlayerControl : MonoBehaviour
         charcontroller.Move(speed  * MovementSpeedMultiplier * Time.deltaTime);
     }
     
-    private void lockCamera(bool locked)
+    private void lockCursor(bool locked)
     {
         if (locked)
         {
@@ -78,14 +78,5 @@ public class PlayerControl : MonoBehaviour
             Cursor.visible = true;
         }
     }
-    
-    // called when the charcontroller hits something
-    void OnControllerColliderHit(ControllerColliderHit hit){
-        
-        // for now, we only care about the platforms 
-        if (hit.gameObject.CompareTag("platform"))
-        {
-            hit.transform.SendMessage("spam", SendMessageOptions.RequireReceiver);
-        }
-    }
+
 }
