@@ -59,9 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DoorScript.cs" />
-    <Compile Include="Assets\PressurePlateScript.cs" />
-    <Compile Include="Assets\RicochetTarget.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -70,12 +67,14 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+    <Compile Include="Assets\Scripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\PlatformMovement.cs" />
     <Compile Include="Assets\Scripts\PlatformPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\PlayerWeaponScript.cs" />
+    <Compile Include="Assets\Scripts\PressurePlateScript.cs" />
+    <Compile Include="Assets\Scripts\RicochetTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Tutorial_Info\Scripts\Readme.cs" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/mnt/data/home/coursework/y3/gam/cw2/game/Dexteritate/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

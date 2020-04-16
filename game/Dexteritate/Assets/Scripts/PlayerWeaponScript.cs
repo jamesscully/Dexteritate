@@ -42,11 +42,26 @@ public class PlayerWeaponScript : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && !holding)
         {
             FireBullet();
+        }
+
+
+        if (Input.GetButtonDown("Fire1") && holding)
+        {
+            Rigidbody objectToPunt = heldObject.GetComponent<Rigidbody>();
+            
+            StopHoldingObject();
+
+            int puntForce = 1000;
+            Vector3 direction = Camera.main.transform.forward * puntForce;
+            
+            objectToPunt.AddForce(direction, ForceMode.Force);
             
         }
     }
 
 
+    public int ProjectileSpeed = 1000;
+    public float ProjectileTimeToLive = 3f;
     public GameObject Projectile;
     void FireBullet()
     {
@@ -61,9 +76,9 @@ public class PlayerWeaponScript : MonoBehaviour
         
         Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
 
-        rigidbody.AddForce(Camera.main.transform.forward * 1000, ForceMode.Force);
+        rigidbody.AddForce(Camera.main.transform.forward * ProjectileSpeed, ForceMode.Force);
         
-        Destroy(bullet, 3f);
+        Destroy(bullet, ProjectileTimeToLive);
 
     }
     
@@ -72,11 +87,12 @@ public class PlayerWeaponScript : MonoBehaviour
         Transform cam = Camera.main.transform;
         
         RaycastHit hit;
-        //Ray ray = new Ray(cam.position, cam.forward);
+        
+        // this translates the middle of the screen to an actual world point
+        Vector3 origin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
 
-        Vector3 lookAt = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
-
-        Ray ray = new Ray(lookAt, cam.forward);
+        Ray ray = new Ray(origin, cam.forward);
+        
         Debug.DrawRay(ray.origin, cam.forward * 10, Color.magenta, 10);
 
 
@@ -102,7 +118,8 @@ public class PlayerWeaponScript : MonoBehaviour
         heldObject.transform.parent = drop;
         heldObject.transform.position = drop.position;
         
-        // grabbed prevents triggers from being activated before the user places them
+        // "grabbed" prevents triggers from being activated (spammed)
+        // before the user places the object
         heldObject.tag = "grabbed";
     }
 

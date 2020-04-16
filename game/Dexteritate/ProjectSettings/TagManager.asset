@@ -7,6 +7,9 @@ TagManager:
   - platform
   - grabbable
   - grabbed
+  - projectile
+  - ricochet_target
+  - shooting_target
   layers:
   - Default
   - TransparentFX
