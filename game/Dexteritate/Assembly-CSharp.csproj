@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Assets\DoorScript.cs" />
     <Compile Include="Assets\PressurePlateScript.cs" />
+    <Compile Include="Assets\RicochetTarget.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />

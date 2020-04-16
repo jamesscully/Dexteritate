@@ -3591,7 +3591,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17906
+  m_Name: pb_Mesh17910
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3839,7 +3839,8 @@ PrefabInstance:
         type: 3}
       propertyPath: Projectile
       value: 
-      objectReference: {fileID: 1787292486}
+      objectReference: {fileID: 6616547054035969564, guid: b531ecda3b07f7fb4ae11f3b057468da,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 8018570342341980575, guid: 35c1003eb491d886b861e11bbf0a619c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 35c1003eb491d886b861e11bbf0a619c, type: 3}

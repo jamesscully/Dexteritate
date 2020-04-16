@@ -56,7 +56,8 @@ public class PlayerWeaponScript : MonoBehaviour
         // move it away from us so we don't get stuck
         cameraPoint = cameraPoint + Camera.main.transform.forward * 2;
         
-        GameObject bullet = Instantiate(Projectile, cameraPoint, Quaternion.identity);
+        GameObject bullet = Instantiate(Projectile, cameraPoint, Camera.main.transform.rotation);
+        
         
         Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
 

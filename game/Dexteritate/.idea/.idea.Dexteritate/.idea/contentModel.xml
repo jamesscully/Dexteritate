@@ -359,6 +359,7 @@
           </e>
         </e>
         <e p="PressurePlateScript.cs" t="Include" />
+        <e p="RicochetTarget.cs" t="Include" />
         <e p="SampleScenes" t="Include">
           <e p="Menu" t="Include">
             <e p="Scripts" t="Include">
