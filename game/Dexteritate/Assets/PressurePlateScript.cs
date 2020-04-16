@@ -45,6 +45,7 @@ public class PressurePlateScript : MonoBehaviour
         if (objOther.Equals(ActivatingGameObject))
         {
             activated = true;
+            Door.SendMessage("PPlateActivated", SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -55,6 +56,7 @@ public class PressurePlateScript : MonoBehaviour
         if (objOther.Equals(ActivatingGameObject))
         {
             activated = false;
+            Door.SendMessage("PPlateDeactivated", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

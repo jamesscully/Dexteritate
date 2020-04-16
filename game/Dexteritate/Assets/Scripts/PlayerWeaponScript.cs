@@ -22,15 +22,13 @@ public class PlayerWeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool PrimaryFire = Input.GetButton("Fire1");
-        bool SecondaryFire = Input.GetButton("Fire2");
 
+        // whilst we're holding an object, move it!
         if(holding)
             MoveHeldObject();
 
         if (Input.GetButtonDown("Fire2"))
         {
-            // fire, see if it's grabbable
             if (!holding)
             {
                 FireGrabObjectRay();
@@ -40,17 +38,33 @@ public class PlayerWeaponScript : MonoBehaviour
             }
         }
 
-        // if (SecondaryFire)
-        // {
-        //     MoveHeldObject();
-        // }
-        
-        // if (Input.GetButtonUp("Fire2"))
-        // {
-        //     StopHoldingObject();
-        // }
+
+        if (Input.GetButtonDown("Fire1") && !holding)
+        {
+            FireBullet();
+            
+        }
     }
 
+
+    public GameObject Projectile;
+    void FireBullet()
+    {
+        // get the 'crosshair'
+        Vector3 cameraPoint = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+
+        // move it away from us so we don't get stuck
+        cameraPoint = cameraPoint + Camera.main.transform.forward * 2;
+        
+        GameObject bullet = Instantiate(Projectile, cameraPoint, Quaternion.identity);
+        
+        Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
+
+        rigidbody.AddForce(Camera.main.transform.forward * 1000, ForceMode.Force);
+        
+        Destroy(bullet, 3f);
+
+    }
     
     void FireGrabObjectRay()
     {
@@ -66,7 +80,6 @@ public class PlayerWeaponScript : MonoBehaviour
 
 
         // if we have hit something
-        if (Physics.Raycast(ray, out hit))
         if (Physics.Raycast(cam.position, cam.forward, out hit, 100f))
         {
             // get information about the hit object
@@ -85,12 +98,10 @@ public class PlayerWeaponScript : MonoBehaviour
      
     private void MoveHeldObject()
     {
-        // // we don't care if we arent holding an object
-        // if (heldObject == null)
-        //     return;
-        
         heldObject.transform.parent = drop;
         heldObject.transform.position = drop.position;
+        
+        // grabbed prevents triggers from being activated before the user places them
         heldObject.tag = "grabbed";
     }
 
