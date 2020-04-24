@@ -75,7 +75,7 @@
     <Compile Include="Assets\Scripts\PressurePlateScript.cs" />
     <Compile Include="Assets\Scripts\RicochetTarget.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\TeleporterScript.cs" />
+    <Compile Include="Assets\Scripts\TeleporterChangeLevel.cs" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/mnt/data/home/coursework/y3/gam/cw2/game/Dexteritate/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -12,6 +12,10 @@ public class PlayerControl : MonoBehaviour
     
     // to lock & hide the cursor in the center
     private bool  MOUSE_LOCKED = true;
+
+    public bool DebugMode = false;
+    
+    public Vector3 SpawnPoint = Vector3.zero;
     
     // sensitivity of mouse - this should be extradited to editor variable
     public float MouseSensitivity = 4f;
@@ -27,6 +31,12 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         sprMult = SprintSpeedMultiplier;
+
+        // if we are debugging, we don't want to move from where its located in the world
+        if (!DebugMode)
+        {
+            transform.position = SpawnPoint;
+        }
     }
     
     // Update is called once per frame

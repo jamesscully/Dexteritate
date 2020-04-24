@@ -432,6 +432,7 @@
           <e p="PressurePlateScript.cs" t="Include" />
           <e p="RicochetTarget.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
+          <e p="TeleporterChangeLevel.cs" t="Include" />
         </e>
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
@@ -672,7 +673,6 @@
             </e>
           </e>
         </e>
-        <e p="TeleporterScript.cs" t="Include" />
       </e>
       <e p="Dexteritate.sln" t="IncludeFlat" />
       <e p="Temp/bin" t="ExcludeRecursive" />
