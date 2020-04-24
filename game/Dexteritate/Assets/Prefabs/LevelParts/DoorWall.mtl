@@ -1,0 +1,8 @@
+newmtl RoomFloor
+Kd 0.9339623 0.9339623 0.9339623
+d 1
+
+newmtl RoomWalls
+Kd 0.7611048 0.7611048 0.7611048
+d 1
+

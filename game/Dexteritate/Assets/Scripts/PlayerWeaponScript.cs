@@ -18,6 +18,9 @@ public class PlayerWeaponScript : MonoBehaviour
     private bool holding = false;
 
     public GameObject DropPoint;
+
+    // how forceful players throw objects
+    public int PlayerPuntForce = 1000;
     
     // Update is called once per frame
     void Update()
@@ -50,12 +53,10 @@ public class PlayerWeaponScript : MonoBehaviour
             Rigidbody objectToPunt = heldObject.GetComponent<Rigidbody>();
             
             StopHoldingObject();
-
-            int puntForce = 1000;
-            Vector3 direction = Camera.main.transform.forward * puntForce;
+            
+            Vector3 direction = Camera.main.transform.forward * PlayerPuntForce;
             
             objectToPunt.AddForce(direction, ForceMode.Force);
-            
         }
     }
 
@@ -117,6 +118,13 @@ public class PlayerWeaponScript : MonoBehaviour
     {
         heldObject.transform.parent = drop;
         heldObject.transform.position = drop.position;
+        Rigidbody heldRigid = heldObject.GetComponent<Rigidbody>();
+
+        if (heldRigid != null)
+        {
+            heldRigid.velocity = Vector3.zero;
+            heldRigid.angularVelocity = Vector3.zero;
+        }
         
         // "grabbed" prevents triggers from being activated (spammed)
         // before the user places the object
@@ -128,6 +136,17 @@ public class PlayerWeaponScript : MonoBehaviour
         // make it independent of us
         heldObject.transform.parent = null;
         heldObject.tag = "grabbable";
+        
+        // holding the object will cause velocity gain; remove it
+        Rigidbody heldRigid = heldObject.GetComponent<Rigidbody>();
+        if (heldRigid != null)
+        {
+            heldRigid.velocity = Vector3.zero;
+            heldRigid.angularVelocity = Vector3.zero;
+        }
+
+        
+
         holding = false;
     }
 }

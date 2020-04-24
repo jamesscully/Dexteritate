@@ -32,7 +32,9 @@ public class PlatformMovement : MonoBehaviour
         // c# doesn't implicitly cast bool to int
         int mX = moveX ? 1 : 0; int mY = moveY ? 1 : 0; int mZ = moveZ ? 1 : 0;
         
-        PositionA = transform.position - new Vector3(range * mX, range * mY, range * mZ);
+        // PositionA = transform.position - new Vector3(range * mX, range * mY, range * mZ);
+        
+        PositionA = transform.position;
         PositionB = transform.position + new Vector3(range * mX, range * mY, range * mZ);
         
         distance = Vector3.Distance(PositionA, PositionB);

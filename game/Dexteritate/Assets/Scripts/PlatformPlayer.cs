@@ -22,24 +22,33 @@ public class PlatformPlayer : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         bool moveable = other.gameObject.Equals(targetObjectA) || other.gameObject.Equals(targetObjectB);
 
         // moving objects that are grabbed creates weird scale-morph-effect, so we'll ignore until dropped.
         moveable = moveable && !other.gameObject.CompareTag("grabbed");
+        
+        // print("We've been hit!");
 
         if (moveable)
         {
-            other.transform.SetParent(transform);
+            print("Object Grabbed");
+            other.transform.SetParent(transform, true);
         }
     }
-    
-    private void OnCollisionExit(Collision other)
+
+    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.Equals(targetObjectA) || other.gameObject.Equals(targetObjectB))
+        bool moveable = other.gameObject.Equals(targetObjectA) || other.gameObject.Equals(targetObjectB);
+
+        // moving objects that are grabbed creates weird scale-morph-effect, so we'll ignore until dropped.
+        moveable = moveable && !other.gameObject.CompareTag("grabbed");
+        
+        if (moveable)
         {
             // Debug.Log("We've had a exit");
+            print("Object Left!");
             other.transform.parent = null;
         }
     }
