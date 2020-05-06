@@ -652,7 +652,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 
+  m_SelectedFaces: 03000000
   m_SelectedEdges:
   - a: 47
     b: 46

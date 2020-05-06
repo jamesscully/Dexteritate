@@ -23,6 +23,11 @@ public class PlatformMovement : MonoBehaviour
     private BoxCollider platform = null;
 
     private Vector3 PositionA, PositionB;
+
+    
+    public Light light = null;
+
+    public bool ShowHightlight = false;
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +41,9 @@ public class PlatformMovement : MonoBehaviour
         
         PositionA = transform.position;
         PositionB = transform.position + new Vector3(range * mX, range * mY, range * mZ);
-        
+
+        light.enabled = ShowHightlight;
+
         distance = Vector3.Distance(PositionA, PositionB);
     }
 
@@ -70,6 +77,12 @@ public class PlatformMovement : MonoBehaviour
         // restart time
         startTime = Time.time;
     }
-    
-    
+
+    private void OnDrawGizmos()
+    {
+        // draw the path of the platform so we can place objects ezier
+        Gizmos.color = Color.blue;
+        int mX = moveX ? 1 : 0; int mY = moveY ? 1 : 0; int mZ = moveZ ? 1 : 0;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(range * mX, range * mY, range * mZ));
+    }
 }

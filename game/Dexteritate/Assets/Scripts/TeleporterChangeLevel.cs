@@ -11,13 +11,20 @@ public class TeleporterChangeLevel : MonoBehaviour
     public string SceneToLoad;
 
     public bool TeleportPlayer = true;
+    
+    // where?
     public Vector3 TeleportTo;
-    public GameObject TeleportObject;
+    
+    // use an empty object to easily locate where we wanna be teleported to
+    public GameObject TeleportToObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (TeleportToObject != null)
+        {
+            TeleportTo = TeleportToObject.transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -28,30 +35,21 @@ public class TeleporterChangeLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        print("TriggerEnter");
         GameObject pObject = other.gameObject;
-        Transform pTransform = other.gameObject.transform;
-        
-        if(!TeleportPlayer)
-            return;
-        
+
         if (LoadsScene && pObject.CompareTag("Player")) {
             SceneManager.LoadScene(SceneToLoad);
-        } else if (other.gameObject == TeleportObject) {
-            other.gameObject.transform.SetPositionAndRotation(TeleportTo, other.gameObject.transform.rotation);
+        } else if (pObject.CompareTag("Player") && !TeleportPlayer)
+        {
+            return;
         }
-    }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        print("Collision");
-        // if we don't want to tp the player, exit!
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        print("We're being hit!");
-        
-        
-
+        other.gameObject.transform.SetPositionAndRotation(TeleportTo, other.gameObject.transform.rotation);
     }
 }

@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // escape will free the mouse
         if (Input.GetKeyDown("escape"))
             MOUSE_LOCKED = !MOUSE_LOCKED;
@@ -54,19 +55,21 @@ public class PlayerControl : MonoBehaviour
         float forwards = Input.GetAxis("Vertical");
         float sideways = Input.GetAxis("Horizontal");
         
-        // we don't want to go over 180 deg range - we'll end up spinning around -- fix this
-        // cam_ver = Mathf.Clamp(cam_ver, -90f, 90f);
         
         transform.Rotate(0, cam_hoz, 0);
         Camera.main.transform.Rotate(cam_ver, 0, 0);
         
         
-        verticalVelocity += Physics.gravity.y * Time.deltaTime;
-        
         CharacterController charcontroller = GetComponent<CharacterController>();
         
         if (Input.GetButton("Jump") && charcontroller.isGrounded)
             verticalVelocity = JumpHeight;
+
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+        // prevent velocity build-up from line above; falling off objects drops player
+        if (verticalVelocity < -1.5f)
+            verticalVelocity = -1.5f;
         
         Vector3 speed = new Vector3(sideways , verticalVelocity, forwards);
         speed = transform.rotation * speed;
@@ -78,15 +81,12 @@ public class PlayerControl : MonoBehaviour
     private void lockCursor(bool locked)
     {
         if (locked)
-        {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
         else
-        {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        
+        // only visible if not locked
+        Cursor.visible = !locked;
     }
 
 }
