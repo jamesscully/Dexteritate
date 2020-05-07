@@ -24,6 +24,7 @@ GameObject:
   m_Component:
   - component: {fileID: 213347589777610520}
   - component: {fileID: 5187900245115005580}
+  - component: {fileID: 1789037475086466044}
   - component: {fileID: 2346580112480283431}
   m_Layer: 0
   m_Name: ShootingTarget
@@ -61,7 +62,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matActivated: {fileID: 2100000, guid: 64b555a2597921c1fa59082a769da1b5, type: 2}
   matError: {fileID: 2100000, guid: a2d8fe5c52face50d9c59d9d49b4a35f, type: 2}
-  matNormal: {fileID: 2100000, guid: 28093d2a57601fbeca36acf58d59b722, type: 2}
+  matNormal: {fileID: 2100000, guid: 17bb1660b01d4d284aede3b9c5acde5c, type: 2}
+  StayActiveTime: 5
+  EventHitCount: 3
+  DoorToOpen: {fileID: 0}
+--- !u!114 &1789037475086466044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097482588215849146}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdafc8cfec900969aa65fdb8f4db0a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformToMove: {fileID: 213347589777610520}
+  speed: 0
+  range: 0
+  moveX: 0
+  moveY: 0
+  moveZ: 0
+  light: {fileID: 0}
+  ShowHightlight: 0
 --- !u!54 &2346580112480283431
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,8 +100,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 14
+  m_CollisionDetection: 3
 --- !u!1001 &7531703238152512177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,6 +168,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d7a1b044aa0285d028b7eac73e310ca3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d7a1b044aa0285d028b7eac73e310ca3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d7a1b044aa0285d028b7eac73e310ca3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: d7a1b044aa0285d028b7eac73e310ca3,
         type: 3}

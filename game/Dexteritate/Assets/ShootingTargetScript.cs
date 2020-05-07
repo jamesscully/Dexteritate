@@ -10,35 +10,82 @@ public class ShootingTargetScript : MonoBehaviour
     public Material matError;
     public Material matNormal;
 
+    public int StayActiveTime = 5;
+    public int EventHitCount = 3;
+    
+    
+    static int TargetActiveCount = 0;
+
+    public GameObject DoorToOpen = null;
+
     private MeshRenderer mesh;
 
     private bool activated = false, error = false;
+
+    private float hitTime;
+
+    private GameObject collisionObj;
     
     // Start is called before the first frame update
     void Start()
     {
-        mesh = GameObject.Find("TargetMesh").GetComponent<MeshRenderer>();
+        mesh = GetComponentInChildren<MeshRenderer>();
+        // mesh = GameObject.Find("TargetMesh").GetComponent<MeshRenderer>();
         
         if(mesh == null)
             Debug.LogError("ShootingTargetScript: Error getting TargetMesh Renderer; borken?");
-        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (activated)
+        {
+            if(timeToDeactivate())
+                deactivate();
+        }
+    }
+
+    bool timeToDeactivate()
+    {
+        float endTime = hitTime + (StayActiveTime);
+        return Time.time > endTime;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("projectile"))
+        // ignore if not bullet
+        if (!other.gameObject.CompareTag("projectile") || activated)
             return;
-
-        activated = true;
         
-        print("Activated");
+        activate();
+        
+        // remove the bullet
+        Destroy(other.gameObject);
+    }
+
+    void activate()
+    {
+        TargetActiveCount++;
+        
+        activated = true;
+        hitTime = Time.time;
+        
+        refreshMaterial();
+        
+        // compared static count to how many to activate
+        if (TargetActiveCount == EventHitCount)
+        {
+            DoorToOpen.SendMessage("EventActivated");
+        }
+    }
+
+    void deactivate()
+    {
+        // decrement the active target count
+        TargetActiveCount--;
+        activated = false;
         
         refreshMaterial();
     }
@@ -47,13 +94,12 @@ public class ShootingTargetScript : MonoBehaviour
     {
         Material[] mats = mesh.materials;
         
-        
         if (activated)
-            mats[1] = matActivated;
+            mats[0] = matActivated;
         else if (error)
-            mats[1] = matError;
+            mats[0] = matError;
         else if (!activated && !error)
-            mats[1] = matNormal;
+            mats[0] = matNormal;
 
         mesh.materials = mats;
     }

@@ -14,6 +14,7 @@ public class DoorScript : MonoBehaviour
     private Vector3 ogPos;
 
     private bool opened = false;
+    
     // Update is called once per frame
     void Update()
     {
@@ -25,12 +26,12 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    void PPlateActivated()
+    void EventActivated()
     {
         opened = true;
     }
 
-    void PPlateDeactivated()
+    void EventDeactivated()
     {
         opened = false;
     }

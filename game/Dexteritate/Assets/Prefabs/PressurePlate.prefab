@@ -107,7 +107,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,6 +171,9 @@ MonoBehaviour:
   ActivatingGameObject: {fileID: 0}
   PlateObject: {fileID: 3278810066112246232}
   Door: {fileID: 0}
+  mesh: {fileID: 3872104395332797700}
+  matActivated: {fileID: 2100000, guid: 64b555a2597921c1fa59082a769da1b5, type: 2}
+  matNormal: {fileID: 2100000, guid: 17bb1660b01d4d284aede3b9c5acde5c, type: 2}
 --- !u!64 &8293325847873187626
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -363,8 +366,19 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: b59adc0e398f750ba85470169fd0688e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17bb1660b01d4d284aede3b9c5acde5c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59adc0e398f750ba85470169fd0688e, type: 3}
+--- !u!23 &3872104395332797700 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: b59adc0e398f750ba85470169fd0688e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6818803279210162385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2007468242214224843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b59adc0e398f750ba85470169fd0688e,

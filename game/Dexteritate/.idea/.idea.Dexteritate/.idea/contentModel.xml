@@ -425,15 +425,16 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="DoorScript.cs" t="Include" />
-          <e p="PlatformMovement.cs" t="Include" />
           <e p="PlatformPlayer.cs" t="Include" />
           <e p="PlayerControl.cs" t="Include" />
           <e p="PlayerWeaponScript.cs" t="Include" />
           <e p="PressurePlateScript.cs" t="Include" />
           <e p="RicochetTarget.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
+          <e p="SmoothObjMove.cs" t="Include" />
           <e p="TeleporterChangeLevel.cs" t="Include" />
         </e>
+        <e p="ShootingTargetScript.cs" t="Include" />
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">

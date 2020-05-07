@@ -8,17 +8,22 @@ public class RicochetTarget : MonoBehaviour
 {
     // how many times things have been hit across all instances
     static private int hit = 0;
+    
     // are we staying on?
     private bool activated = false;
+    
     // when was this first hit?
     private float activation_time = 0f;
+    
     // this is calculated on enable
     private float disableAtTime = 0f;
+    
     // how long should we wait till disabling again?
     public float ActivationTimeDelay = 5f;
     
     // we can set these, then duplicate the targets.
     public int OpenDoorAtCount = 1337;
+    
     public GameObject DoorToOpen = null;
 
     // Start is called before the first frame update
@@ -41,9 +46,7 @@ public class RicochetTarget : MonoBehaviour
         }
 
     }
-
-
-
+    
     // this should be set once, we check if it's the same bullet hitting all targets.
     // given that only one room is done at a time, this should suffice
     static private GameObject initialBullet;
@@ -60,7 +63,9 @@ public class RicochetTarget : MonoBehaviour
         activation_time = 0;
         disableAtTime = 0;
         hit--;
-
+        
+        refreshMaterial();
+        
         // only when we have 0 targets activated can we disable the initial bullet.
         if (hit == 0)
         {
@@ -75,10 +80,12 @@ public class RicochetTarget : MonoBehaviour
         activation_time = Time.time;
         disableAtTime = activation_time + ActivationTimeDelay;
         hit++;
+        
+        refreshMaterial();
 
         if (hit == OpenDoorAtCount)
         {
-            DoorToOpen.SendMessage("PPlateActivated");
+            DoorToOpen.SendMessage("EventActivated");
         }
     }
     
@@ -105,5 +112,30 @@ public class RicochetTarget : MonoBehaviour
             print("Illegal shot detected!");
         }
         
+    }
+
+    public MeshRenderer mesh = null;
+
+    public Material matActivated, matError, matNormal;
+
+    public bool error = false;
+    void refreshMaterial()
+    {
+        if (mesh == null)
+        {
+            print("No mesh specified on target");
+            return;
+        }
+            
+        Material[] mats = mesh.materials;
+        
+        if (activated)
+            mats[1] = matActivated;
+        else if (error)
+            mats[1] = matError;
+        else if (!activated && !error)
+            mats[1] = matNormal;
+
+        mesh.materials = mats;
     }
 }

@@ -12,15 +12,17 @@ public class PressurePlateScript : MonoBehaviour
     public GameObject Door;
 
     private bool activated = false;
-
-
-    // when we start off, we won't be activated
+    
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     
+    public MeshRenderer mesh;
+
     // Start is called before the first frame update
     void Start()
     {
+        mesh = GameObject.Find("plate").GetComponent<MeshRenderer>();
+
         originalPosition = PlateObject.transform.position;
         originalRotation = PlateObject.transform.rotation;
     }
@@ -44,8 +46,8 @@ public class PressurePlateScript : MonoBehaviour
         
         if (objOther.Equals(ActivatingGameObject))
         {
-            activated = true;
-            Door.SendMessage("PPlateActivated", SendMessageOptions.DontRequireReceiver);
+            activate();
+            Door.SendMessage("EventActivated", SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -55,8 +57,36 @@ public class PressurePlateScript : MonoBehaviour
 
         if (objOther.Equals(ActivatingGameObject))
         {
-            activated = false;
-            Door.SendMessage("PPlateDeactivated", SendMessageOptions.DontRequireReceiver);
+            deactivate();
+            Door.SendMessage("EventDeactivated", SendMessageOptions.DontRequireReceiver);
         }
+    }
+    
+    public Material matActivated;
+    public Material matNormal;
+
+    private void activate()
+    {
+        activated = true;
+        refreshMaterial();
+    }
+
+    private void deactivate()
+    {
+        activated = false;
+        refreshMaterial();
+    }
+    
+    void refreshMaterial()
+    {
+        Material[] mats = mesh.materials;
+        
+        
+        if (activated)
+            mats[0] = matActivated;
+        else
+            mats[0] = matNormal;
+
+        mesh.materials = mats;
     }
 }
