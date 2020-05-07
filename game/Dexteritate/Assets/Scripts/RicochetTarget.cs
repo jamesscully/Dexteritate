@@ -97,20 +97,24 @@ public class RicochetTarget : MonoBehaviour
             initialBullet = other.gameObject;
             EnableTarget();
         } 
-        // if we, ourselves, aren't activated but hit, check if it's the initial bullet
+        // if we ourselves aren't activated but hit, check if it's the initial bullet
         else if (!activated && initialBullet == other.gameObject)
         {
             EnableTarget();
         }
         else if (activated)
         {
-            // ignore
+            // ignore if we're already activated
         }
         // else they are trying to cheat us!
         else 
         {
             print("Illegal shot detected!");
         }
+        
+        // if we're done with the puzzle, destroy the bullet
+        if (hit == OpenDoorAtCount)
+            Destroy(other.gameObject);
         
     }
 

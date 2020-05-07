@@ -16,12 +16,12 @@ public class PressurePlateScript : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     
-    public MeshRenderer mesh;
+    private MeshRenderer mesh;
 
     // Start is called before the first frame update
     void Start()
     {
-        mesh = GameObject.Find("plate").GetComponent<MeshRenderer>();
+        mesh = PlateObject.GetComponent<MeshRenderer>();
 
         originalPosition = PlateObject.transform.position;
         originalRotation = PlateObject.transform.rotation;

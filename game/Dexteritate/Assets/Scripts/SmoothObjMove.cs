@@ -84,12 +84,11 @@ public class SmoothObjMove : MonoBehaviour
         Gizmos.color = Color.blue;
         
         int mX = moveX ? 1 : 0; int mY = moveY ? 1 : 0; int mZ = moveZ ? 1 : 0;
-        
-        if(Application.isPlaying)
+
+        if (Application.isPlaying)
             Gizmos.DrawLine(PositionA, PositionB);
         else
-            Gizmos.DrawLine(TransformToMove.position, TransformToMove.position + new Vector3(range * mX, range * mY, range * mZ));
-        
-            
+            Gizmos.DrawLine(TransformToMove.position,
+                TransformToMove.position + new Vector3(range * mX, range * mY, range * mZ));
     }
 }
