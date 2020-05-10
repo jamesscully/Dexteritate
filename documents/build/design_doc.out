@@ -1,2 +1,25 @@
-\BOOKMARK [1][-]{section.1}{Core Mechanics}{}% 1
-\BOOKMARK [1][-]{section.2}{Levels}{}% 2
+\BOOKMARK [1][-]{section.1}{Premise / Narrative}{}% 1
+\BOOKMARK [1][-]{section.2}{Core Gameplay}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Rules}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Procedures}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Resources}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Weapons}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Gun}{subsection.2.4}% 7
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Physics Gun}{subsection.2.4}% 8
+\BOOKMARK [1][-]{section.3}{Objects}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Moving Platforms}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Puzzle Elements}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Pressure Plates}{subsection.3.2}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Ricochet Boards}{subsection.3.2}% 13
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Shooting Targets}{subsection.3.2}% 14
+\BOOKMARK [1][-]{section.4}{Game Flow}{}% 15
+\BOOKMARK [2][-]{subsection.4.1}{Difficulty Curve}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{Characters}{}% 17
+\BOOKMARK [1][-]{section.6}{Physics and Parameters}{}% 18
+\BOOKMARK [2][-]{subsection.6.1}{Physics Cubes}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.2}{Platforms}{section.6}% 20
+\BOOKMARK [1][-]{section.7}{Levels}{}% 21
+\BOOKMARK [2][-]{subsection.7.1}{Requirements}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.2}{Progression}{section.7}% 23
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Tutorial}{subsection.7.2}% 24
+\BOOKMARK [2][-]{subsection.7.3}{Feature Revelations}{section.7}% 25

@@ -91,6 +91,9 @@ public class RicochetTarget : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
+        
+        print("Hit by object: " + other.gameObject.GetInstanceID());
+        
         // if no targets have been hit, then we must enable + set the triggering bullet
         if (!activated && initialBullet == null)
         {

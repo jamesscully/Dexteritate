@@ -101,8 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7893098918881154063}
   - component: {fileID: 5389589009492524432}
+  - component: {fileID: 5951796777397830106}
   m_Layer: 0
-  m_Name: laser_projectile
+  m_Name: Projectile
   m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 6616547054035969564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5365033890499829921}
   m_Father: {fileID: 0}
@@ -139,3 +140,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 3
+--- !u!114 &5951796777397830106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616547054035969564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6657e39a9fd155880f30d5a4c259bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

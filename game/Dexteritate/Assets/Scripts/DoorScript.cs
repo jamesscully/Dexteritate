@@ -14,25 +14,27 @@ public class DoorScript : MonoBehaviour
     private Vector3 ogPos;
 
     private bool opened = false;
+
+    public bool StayOpen = false;
     
     // Update is called once per frame
     void Update()
     {
-        if(opened)
-            transform.SetPositionAndRotation(ogPos + new Vector3(0, -10, 0), transform.rotation);
-        else
-        {
-            transform.SetPositionAndRotation(ogPos, transform.rotation);
-        }
+        
     }
 
     void EventActivated()
     {
         opened = true;
+        gameObject.SetActive(false);
     }
 
     void EventDeactivated()
     {
+        if (StayOpen)
+            return;
+
         opened = false;
+        gameObject.SetActive(true);
     }
 }

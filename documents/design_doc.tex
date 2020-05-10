@@ -63,43 +63,101 @@ showstringspaces=false}
 \includegraphics[width=0.75\linewidth]{logo} 
 \end{center}
 
-\section*{Concept}
-The player, Patient \#0x5F3759DF, has woken up in an unknown white-light treatment facility. An anonymous operator guides them through multiple levels testing their ability to solve logical puzzles and overall dexterity, through platforming and using bullets to shoot targets within time, and ricochet bullets.
+\section{Premise / Narrative}
+The player, Subject \#0x5F3759DF, has woken up in an unknown white-light treatment facility. An anonymous operator guides them through multiple levels testing their ability to solve logical puzzles and overall dexterity via platforming, speed-shooting and balance.
+
+
+
+\section{Core Gameplay}
+\subsection{Rules}
+The player must navigate their way to the end of the game with the least amount of fails or 'deaths' as possible, in a short period. They accumulate fails by: 
 
 \begin{itemize}
-	\item 3D First-person perspective 
-	\item Platforming-inspired game
-	\item Features
+	\item Falling out of the map i.e. off platforms into the void
+	\item Falling into puzzle areas i.e. where they would otherwise be stuck
+	\item Resetting the level \\
+\end{itemize} 
+
+Regarding their weapon / physics gun capabilities, the player can only:
+
+\begin{itemize}
+	\item Fire a maximum of three bullets a second
+	\item Fire bullets when not holding an object
+	\item Grab objects highlighted a purple colour
+	\item Grab objects within reach (from a raycast)
+	\item Grab objects from a short distance (~15 units) \\
+	
+\end{itemize}
+
+Similarly, puzzle pieces have rules to disallow cheating or otherwise exploits:
+
+\textbf{Ricochet Boards}
+\begin{itemize}
+	\item Groups can only be activated by a single instance of a bullet
+	\item Groups reset if another bullet is detected \\
+\end{itemize}
+
+\textbf{Pressure Plates}
+\begin{itemize}
+	\item Can only be activated by a physics cube or player
+	\item Cannot move throughout world space \\
+\end{itemize}
+
+\textbf{Shooting Targets}
+\begin{itemize}
+	\item 
 \end{itemize}
 
 
+\subsection{Procedures}
+Players are able to interact with the world through three methods: movement, bullets and grappling objects. 
 
-\section*{Core Gameplay}
-\subsection*{Weapons}
-\subsubsection*{Gun}
+The player should be able to move through wide-spread and adopted control schemes, such as:
+\begin{enumerate}
+	\item Left analog stick on controllers and 'B' or typical jump button
+	\item WASD and Spacebar on keyboard
+\end{enumerate}
+
+Similarly, the player should be able to use their utility through:
+
+\textbf{Controller}
+\begin{enumerate}
+	\item Left trigger to pick up / drop objects
+	\item Right trigger to throw objects 
+	\item Right trigger to fire projectiles 
+\end{enumerate}
+
+\textbf{Keyboard and Mouse}
+\begin{enumerate}
+	\item Right mouse button to pick up / drop objects
+	\item Left mouse button to throw objects 
+	\item Left mouse button to fire projectiles 
+\end{enumerate}
+
+
+
+\subsection{Resources}
+
+\subsection{Weapons}
+\subsubsection{Gun}
 Whilst there are no enemies in Dexteritate, the player has the ability to launch projectiles from a gun. These projectiles allow the player to interact with puzzles by either activating buttons located within inaccessible areas or other elements as we will later discuss.
 
-\subsubsection*{Physics Gun}
+\subsubsection{Physics Gun}
 The physics gun is available to the player to pick up and drop grabbable objects onto pressure plates or physics-bound sections. The physics gun will also allow players to 'punt' grabbed objects, so that plates in hard-to-reach areas can still be activated.
 
 
-\section*{Flow}
-We want the player to feel challenge, but most definitely not too early. We do this by gradually introducing new concepts; the very first level introduces the narrative of waking up in the aforementioned white-light facility. Then, we introduce the basic concepts: platforming, puzzles and weapon/utility. 
 
-This allows the player to understand the very core of the game by getting used to the characters jump height and distance through initial platforming, the basics of activating certain puzzle elements and getting used to the utility that they have (gun, physics gun).
+\section{Objects}
 
-Since the player has only been introduced to basic concepts, we only increase complexity slightly. We will do this by slowly incrementing variables on previous aspects - platforms move in two directions but not at a much higher speed, puzzles add a layer of complexity either by utilizing platforming or more physics-reliant interaction, slightly more targets, etc.
+\subsection{Moving Platforms}
+The game also features platforms which are able to move at different speeds, ranges and across each axis. The player does not stick to them however, meaning that they have to test their balance by staying towards the center of the platform. 
 
-
-\newpage
-\section*{Objects}
-\subsection*{Puzzle Elements}
+\subsection{Puzzle Elements}
 
 In Dexteritate, there are three core puzzle elements that are utilized: pressure plates, ricochet boards and targets.
 
-\subsubsection*{Pressure Plates}
+\subsubsection{Pressure Plates}
 Pressure plates in the game can either be activated by the player or by the use of an activating cube. These will unlock (trap)doors that will either allow the player to progress to the next level or reveal another part of the puzzle.  \\
-
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=100px]{pressure}
@@ -110,7 +168,7 @@ Pressure plates in the game can either be activated by the player or by the use 
 These expand the opportunities in solutions made to the player, where we can have them place the activating cube into a physics-bound machine where placement of the cube is necessary to hit the pressure plate, or enabling the player to provide further puzzle elements.
 
 
-\subsubsection*{Ricochet Boards}
+\subsubsection{Ricochet Boards}
 Ricochet boards are boards which deflect any incoming projectiles from the players gun. They are found in groups of two or more, rotated such that bullets are deflected in the general direction of the next board in succession.
 Upon being struck with a projectile they are activated for a variable amount of time, which causes an internal counter of struck to be incremented. Once the amount of activation time is reached, the ricochet board is deactivated, decrementing the counter. 
 \begin{figure}[h]
@@ -119,59 +177,86 @@ Upon being struck with a projectile they are activated for a variable amount of 
 \end{center}
 \caption{Render of ricochet board found in game}
 \end{figure}
-
-\subsubsection*{Targets}
-Targets function similar to how they would in other video games. The player uses the aforementioned gun to shoot projectiles at them and activate them. However, as levels progress there will be more of these targets to shoot, within a given timeframe. This will increase the difficulty of gameplay overtime, as the player works their way through.
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=100px]{target}
-\end{center}
-\caption{Render of target board found in game}
-\end{figure}
-
-
-
 \newpage
-\section*{Goals and Objectives}
-The player must work their way through:
 
+\subsubsection{Shooting Targets}
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+\includegraphics[width=1\linewidth]{target} 
+\caption{Render of a target found in game}
+\label{fig:wrapfig}
+\end{wrapfigure}
+Targets function similar to how they would in other video games. The player uses the aforementioned gun to shoot projectiles at them and activate them. However, as levels progress there will be more of these targets to shoot, within a given timeframe. This will increase the difficulty of gameplay overtime, as the player works their way through. \\
+
+
+
+It is also discernible to the player such that they will instinctively know it should be shot for an event or outcome to occur. This means we can further implement it or its model into other puzzles, such as shooting a target which releases a key element to another puzzle; it does not need to adhere to stricly being used a timed-shooting puzzle. 
+
+%\begin{wrapfigure}[r]{0.25\textwidth}
+%\includegraphics[width=0.9\linewidth]{target}
+%\caption{Render of target board found in game}
+%\label{fig:target}
+%\end{wrapfigure}
+
+
+
+
+\section{Game Flow}
+
+\subsection{Difficulty Curve}
+Dexteritate features an initial level that sets the scene for the narrative but also the mechanics involved ahead. This can be likened to Valve's \textit{Portal} (2007), where the first few levels only include picking up and dropping objects, but introducing mechanics slowly and one at a time. \\
+
+We then gradually combine these mechanics as the main game and story progresses, for example the second level introduces both jumping (via simple podiums) and timing the drop of a cube onto a platform. From here, we can pick up difficulty by making jumps further apart or smaller platforms, make platforms move in two directions / different speed, whilst introducing a layer of complexity through the use of puzzle elements. These are small, incremental changes that involve the use of two elements rather than one simple objective. 
+
+
+
+\section{Characters}
+There is only one physical character in the game that is player controlled, AI and enemies have not been implemented. 
+
+
+\section{Physics and Parameters}
+As a puzzle game, Dexteritate relies heavily upon physics. We have implemented some 'safety' features to objects, so that the game is not too unfair or difficult to play, and some to fit with the games theme.
+
+\subsection{Physics Cubes}
 \begin{itemize}
-	\item jumping/platforming puzzles
-	\item aiming challenges 
-	\item physics puzzles
+	\item Only rotate on the Y axis, allowing the player to throw/place them with ease (no tumbling)
+	\item Have low mass, resulting in easier-to-predict throwing
 \end{itemize}
 
-\section*{Controls / Interaction}
-The player will be able to interact with the world through:
+\subsection{Platforms}
 \begin{itemize}
-	\item WASD + Spacebar controls 
-	\item Captured mouse movement
-	\item Mouse-button presses \\
+	\item Do not move the player, to test their balance.
+	\item Move at a reasonable speed for the difficulty; the above point is taken into account	
 \end{itemize}
-
-This will enable them to move and jump onto platforms, move the camera to do so and be able to shoot at targets or ricochet projectiles.
-
-\section{Core Mechanics}
-
-The core mechanic of this game is using physics and movement (as the title says in Latin, dexterity) to unlock or reach the next area. This can be jumping across moving platforms without falling off, picking up and moving boxes to climb onto a ledge or press a pressure plate down, and using a weapon with ricocheting projectiles to activate a series of triggers. \\
-
-More indepth details of these challenges could be:
-
-Aiming challenges:
-Bounce ricocheting projectiles into series of plates
-Shoot 3 targets within a given time-frame
-
-
-
-
 
 
 \section{Levels}
 
+\subsection{Requirements}
+
+\subsection{Progression}
+
+\subsubsection{Tutorial}
+The player initially starts off in a tutorial level, whereby we walk the player through the mechanics and general feel of the game. This features no particular danger to the player and instead makes the puzzles simple as possible, explaining the mechanics through the use of diegetic (in-game) text, fitting the narrative of an anonymous operator. \\
+
+This will walk them through each of the puzzle aspects and what is required of them, such that we can combine them later in the game. The tutorial will cover the basics, in no particular order: \\
+
+\begin{itemize}
+	\item Picking up, throwing / dropping physics cubes, activating pressure plates with them.
+	\item Ricochet boards, asking them to hit two boards with one projectile 
+	\item Shoot three targets in succession, with leniency given on time to shoot them (e.g. 3 seconds for 3 targets)
+	\item Navigate across moving platforms, each with a slow speed and generous sizing
+	\item Jumping up podiums.
+\end{itemize}
+
+\subsubsection*{The Chambers: First Level}
+The first level starts off with a small re-iteration of the ricochet boards. Next, we can involve and show the user some ways that the cubes and physics can be interacted, with small podium jumping 
 
 
 
+\subsection{Feature Revelations}
+Revelations are made to the player by using previous mechanics such as pressure plates or 'activating' pieces that reveal extra parts to the puzzle, or used in otherwise different manners. These mechanics are introduced one by one in the tutorial sequence, but not explored fully until later on where the game can use these to create a challenging aesthetic that requires the player to think more out of the box.
 
+For example, as previously stated, the player will instinctively know that they need to shoot targets; we can attach the same model used to a physics puzzle that would dislodge or otherwise reveal a key object to a puzzle. Similarly, players will know that they can pick up certain colours of physics cubes and so we can introduce varying sizes of these cubes in order for them to climb to new areas.
 
 \end{document}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -65,11 +66,15 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton("Jump") && charcontroller.isGrounded)
             verticalVelocity = JumpHeight;
 
-        verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-        // prevent velocity build-up from line above; falling off objects drops player
-        if (verticalVelocity < -1.5f)
-            verticalVelocity = -1.5f;
+        // prevent velocity build-up, otherwise falling off a ledge causes instant drop
+        
+        
+        
+        verticalVelocity = Mathf.Clamp(Physics.gravity.y * Time.deltaTime + verticalVelocity, -1.5f, Int64.MaxValue);
+
+        // if (verticalVelocity < -1.5f)
+        //     verticalVelocity = -1.5f;
         
         Vector3 speed = new Vector3(sideways , verticalVelocity, forwards);
         speed = transform.rotation * speed;
