@@ -424,7 +424,9 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AddForceOnEvent.cs" t="Include" />
           <e p="DoorScript.cs" t="Include" />
+          <e p="EventInterface.cs" t="Include" />
           <e p="GameControllerScript.cs" t="Include" />
           <e p="Inventory" t="Include">
             <e p="IfInventoryItem.cs" t="Include" />
@@ -442,6 +444,7 @@
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="SmoothObjMove.cs" t="Include" />
           <e p="TeleporterChangeLevel.cs" t="Include" />
+          <e p="UITrigger.cs" t="Include" />
         </e>
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">

@@ -1,31 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class SmoothObjMove : MonoBehaviour
 {
     public Transform TransformToMove;
-    public float speed;
 
-    public float range = 0f;
 
+    // which directions are we moving in?
     public bool moveX, moveY, moveZ;
+    
+    public float speed;
+    public float range = 0f;
 
     private float startTime;
     
     private float distance = 0f;
     private float travelled = 0f;
 
+    // if we're using a platform
     private BoxCollider platform = null;
 
+    // both start/end
     private Vector3 PositionA, PositionB;
 
-    
+    // optional for platforms or highlighted targets
     public Light light = null;
 
+    // show the light
     public bool ShowHightlight = false;
     
     // Start is called before the first frame update
@@ -84,7 +84,9 @@ public class SmoothObjMove : MonoBehaviour
         Gizmos.color = Color.blue;
         
         int mX = moveX ? 1 : 0; int mY = moveY ? 1 : 0; int mZ = moveZ ? 1 : 0;
-
+        
+        
+        // allows for drawing gizmos in and out of play
         if (Application.isPlaying)
             Gizmos.DrawLine(PositionA, PositionB);
         else

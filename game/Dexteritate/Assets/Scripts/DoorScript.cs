@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityTemplateProjects;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : MonoBehaviour, EventInterface
 {
+
+    private Vector3 OriginalPos;
+    private Quaternion OriginalRot;
+
+    public bool Closed = true;
+    
     // Start is called before the first frame update
     void Start()
     {
-        ogPos = transform.position;
+        OriginalPos = transform.position;
+        OriginalRot = transform.rotation;
+        
+        SetActive(Closed);
     }
 
-    // original position, so we can reference from it
-    private Vector3 ogPos;
-
-    private bool opened = false;
-
+    // we may want the door to not stay open - puzzles!
     public bool StayOpen = false;
     
     // Update is called once per frame
@@ -23,18 +29,36 @@ public class DoorScript : MonoBehaviour
         
     }
 
-    void EventActivated()
+    public void EventActivated()
     {
-        opened = true;
-        gameObject.SetActive(false);
+        SetActive(false);
     }
 
-    void EventDeactivated()
+    public void EventStay()
+    {
+        
+    }
+
+    public void EventDeactivated()
     {
         if (StayOpen)
             return;
+        
+        SetActive(true);
+    }
 
-        opened = false;
-        gameObject.SetActive(true);
+    public void SetActive(bool b)
+    {
+        Vector3 HidePos = new Vector3(1337, 1337, 1337);
+
+        if (b)
+        {
+            gameObject.transform.SetPositionAndRotation(OriginalPos, OriginalRot);
+        }
+        else
+        {
+            gameObject.transform.SetPositionAndRotation(HidePos, OriginalRot);
+        }
+        
     }
 }

@@ -17,6 +17,8 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private bool holding = false;
 
+    public float GrabReach = 15f;
+
     public GameObject DropPoint;
 
     // how forceful players throw objects
@@ -94,11 +96,11 @@ public class PlayerWeaponScript : MonoBehaviour
 
         Ray ray = new Ray(origin, cam.forward);
         
-        Debug.DrawRay(ray.origin, cam.forward * 10, Color.magenta, 10);
+        
 
 
         // if we have hit something
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 100f))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, GrabReach))
         {
             // get information about the hit object
             Collider hitCollider = hit.collider;
@@ -144,9 +146,7 @@ public class PlayerWeaponScript : MonoBehaviour
             heldRigid.velocity = Vector3.zero;
             heldRigid.angularVelocity = Vector3.zero;
         }
-
         
-
         holding = false;
     }
 }

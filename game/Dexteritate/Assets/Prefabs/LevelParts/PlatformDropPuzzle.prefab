@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 4721632481863647581}
   m_Layer: 0
   m_Name: PlatformDropPuzzle
-  m_TagString: Untagged
+  m_TagString: DestroyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1986,21 +1986,9 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 1a000000
-  m_SelectedEdges:
-  - a: 109
-    b: 108
-  - a: 108
-    b: 107
-  - a: 106
-    b: 111
-  - a: 111
-    b: 110
-  - a: 110
-    b: 109
-  - a: 107
-    b: 106
-  m_SelectedVertices: 6d0000006c0000006b0000006a0000006f0000006e000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!64 &4721632481863647581
 MeshCollider:
   m_ObjectHideFlags: 0

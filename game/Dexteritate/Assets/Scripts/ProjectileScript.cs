@@ -19,6 +19,9 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-
+        if (other.gameObject.CompareTag("DestroyProjectile"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

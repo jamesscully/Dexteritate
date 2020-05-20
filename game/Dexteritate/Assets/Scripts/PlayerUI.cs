@@ -21,6 +21,7 @@ public class PlayerUI : MonoBehaviour
     void Start()
     {
 
+        // clear all text, see if we're missing refs
         try
         {
             TNotification.text = "";
@@ -44,17 +45,17 @@ public class PlayerUI : MonoBehaviour
         if (IsCountingTime)
         {
             TimeLeft += Time.deltaTime;
-            SetText(TTime, TimePrefix + TimeLeft);
-        }
+            SetText(TTime, TimePrefix + TimeLeft.ToString("F1") + "s");
+        } 
 
     }
     
-    void SetNotification(string n)
+    public void SetNotification(string n)
     {
         SetText(TNotification, n);
     }
 
-    void SetBigMessage(string title, string description)
+    public void SetBigMessage(string title, string description)
     {
 
         // 5 seconds for big notifications
@@ -64,17 +65,17 @@ public class PlayerUI : MonoBehaviour
         SetText(TBigDesc, description, defTimeToLive);
     }
 
-    void ResetTime()
+    public void ResetTime()
     {
         TimeLeft = 0;
     }
 
-    void SetMishaps(int m)
+    public void SetMishaps(int m)
     {
         SetText(TMishaps, MishapsPrefix + m);
     }
 
-    void SetText(Text t, string message, int timeout = -1)
+    private void SetText(Text t, string message, int timeout = -1)
     {
         if (timeout == -1)
             t.text = message;
@@ -91,6 +92,4 @@ public class PlayerUI : MonoBehaviour
 
         t.text = "";
     }
-    
-    
 }

@@ -10,6 +10,7 @@ TagManager:
   - projectile
   - ricochet_target
   - shooting_target
+  - DestroyProjectile
   layers:
   - Default
   - TransparentFX
